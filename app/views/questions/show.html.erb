@@ -1,10 +1,19 @@
 <h2><%=  @question.title %></h2>
 <pre><%= @question.message %></pre>
 
+<% @question.answers.each do |answer| %>
+  <div class="q-answer">
+    <%= answer.message %>
+    <span class="a-author">Submitted by <%= answer.user.name %></span>
+  </div>
+<% end %>
+
 <%= form_for [current_user, @question, @answer], role: 'form' do |f| %>
   <div class="form-group">
     <%= f.text_area :message, id: 'answer-ta', class: 'form-control', placeholder: 'Add Answer' %>
   </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <%= f.submit "Submit", :class => 'btn btn-info' %>
 
 <% end %>
