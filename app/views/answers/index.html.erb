@@ -2,7 +2,7 @@
 <pre><%= @question.message %></pre>
 
 <div id="answers">
-  <% @question.answers.each do |answer| %>
+  <% @answers.each do |answer| %>
     <div class="q-answer">
       <%= answer.message %>
       <span class="a-author">Submitted by <%= answer.user.name %></span>
