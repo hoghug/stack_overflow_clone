@@ -1,0 +1,7 @@
+
+development:
+  adapter: postgresql
+  database: code_answers_development
+test:
+  adapter: postgresql
+  database: code_answers_test
