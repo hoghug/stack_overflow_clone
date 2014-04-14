@@ -4,5 +4,12 @@
 
 <div class="col-md-6">
   <h4>Questions</h4>
-  <%= render @questions %>
+  <%= link_to 'Add Question', new_user_question_path(current_user) %>
+  <% if false %>
+  <% @questions.each do |question| %>
+    <div class="home-question">
+      <%= question.message %>
+    </div>
+  <% end %>
+  <% end %>
 </div>

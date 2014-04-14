@@ -4,7 +4,9 @@ CodeAnswers::Application.routes.draw do
   get 'logout', to: 'users#destroy', as: 'logout'
 
   root :to => 'users#home'
-  resources :users
+  resources :users do
+    resources :questions
+  end
   resources :sessions
 
 
