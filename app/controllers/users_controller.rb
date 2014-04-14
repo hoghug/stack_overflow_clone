@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def home
     @user = User.find(current_user.id)
+    @questions = Question.all
 
   end
 
