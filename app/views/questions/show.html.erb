@@ -1,0 +1,10 @@
+<h2><%=  @question.title %></h2>
+<pre><%= @question.message %></pre>
+
+<%= form_for [current_user, @question, @answer], role: 'form' do |f| %>
+  <div class="form-group">
+    <%= f.text_area :message, id: 'answer-ta', class: 'form-control', placeholder: 'Add Answer' %>
+  </div>
+  <%= f.submit "Submit", :class => 'btn btn-info' %>
+
+<% end %>

@@ -5,7 +5,9 @@ CodeAnswers::Application.routes.draw do
 
   root :to => 'users#home'
   resources :users do
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
   end
   resources :sessions
 

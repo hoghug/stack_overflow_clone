@@ -15,6 +15,11 @@ class QuestionsController < ApplicationController
 
   end
 
+  def show
+    @question = Question.find(params[:id])
+    @answer = Answer.new
+  end
+
   private
     def question_params
       params.require(:question).permit(:title, :message)

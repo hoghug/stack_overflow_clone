@@ -1,0 +1,25 @@
+<h3><%= current_user.name %></h3>
+  <h5>User since: <%= time_ago_in_words(current_user.created_at) %> ago</h5>
+
+<div class="col-md-6">
+  <h4>Your questions</h4>
+  <%= link_to 'Add Question', new_user_question_path(current_user) %>
+  <% current_user.questions.each do |question| %>
+    <div class="home-question">
+
+      <%= question.title %>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-6">
+  <h4>Your answers</h4>
+  <% if false %>
+  <%= link_to 'Add Question', new_user_question_path(current_user) %>
+  <% @questions.each do |question| %>
+    <div class="home-question">
+
+      <%= question.title %>
+    </div>
+  <% end %>
+  <% end %>
+</div>
