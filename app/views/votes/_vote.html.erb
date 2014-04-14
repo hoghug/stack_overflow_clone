@@ -1,0 +1,3 @@
+<% sum = 0 %>
+<% @question.votes.each {|v| sum += v.vote_value } %>
+<%= sum %>

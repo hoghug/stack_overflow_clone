@@ -1,6 +1,25 @@
 <h2><%=  @question.title %></h2>
-<pre><%= @question.message %></pre>
+<div class="vote">
 
+    <%= form_for [current_user, @question, @vote], :role => 'form', :remote => true do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :vote_value, value: '1' %>
+      <%= f.submit '^', class: 'glyphicon glyphicon-chevron-up' %>
+    <% end %>
+
+    <span class="vote-count-post"><% sum = 0 %>
+                                  <% @question.votes.each {|v| sum += v.vote_value } %>
+                                  <%= sum %></span>
+    <%= form_for [current_user, @question, @vote], :role => 'form', :remote => true do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :vote_value, value: '-1' %>
+      <%= f.submit 'v', class: 'glyphicon glyphicon-chevron-down' %>
+    <% end %>
+
+</div>
+<pre><%= @question.message %></pre>
+<div class="clear"></div>
+<hr>
 <div id="answers">
   <% @question.answers.each do |answer| %>
     <div class="q-answer">
@@ -9,7 +28,7 @@
     </div>
   <% end %>
 </div>
-
+<hr>
 <%= form_for [current_user, @question, @answer], :role => 'form', :remote => true do |f| %>
   <div class="form-group">
     <%= f.text_area :message, id: 'answer-ta', class: 'form-control', placeholder: 'Add Answer' %>
