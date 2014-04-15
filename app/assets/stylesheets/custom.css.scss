@@ -13,8 +13,18 @@
   font-size: 14px;
 }
 
-.vote .glyphicon {
+.glyphicon-chevron-up {
+  color: green;
+}
 
+.glyphicon-chevron-down {
+  color: red;
+}
+
+.glyphicon-heart, .glyphicon-chevron-up, .glyphicon-chevron-down {
+  cursor:pointer;
 }
 
 .clear {clear:both;}
+
+#best-answer .glyphicon-heart {color: red}

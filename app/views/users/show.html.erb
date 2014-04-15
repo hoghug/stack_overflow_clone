@@ -17,7 +17,6 @@
   <%= link_to 'Add Question', new_user_question_path(current_user) %>
   <% @questions.each do |question| %>
     <div class="home-question">
-
       <%= question.title %>
     </div>
   <% end %>

@@ -4,7 +4,7 @@
     <%= form_for [current_user, @question, @vote], :role => 'form', :remote => true do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :vote_value, value: '1' %>
-      <%= f.submit '^', class: 'glyphicon glyphicon-chevron-up' %>
+      <span class='glyphicon glyphicon-chevron-up'></span>
     <% end %>
 
     <span class="vote-count-post"><% sum = 0 %>
@@ -13,22 +13,38 @@
     <%= form_for [current_user, @question, @vote], :role => 'form', :remote => true do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :vote_value, value: '-1' %>
-      <%= f.submit 'v', class: 'glyphicon glyphicon-chevron-down' %>
+      <span class='glyphicon glyphicon-chevron-down'></span>
     <% end %>
 
 </div>
 <pre><%= @question.message %></pre>
 <div class="clear"></div>
 <hr>
+<div id="best-answer">
+  <span class='glyphicon glyphicon-heart'></span>
+  <%= @best_answer.message %>
+  <span class="a-author">Submitted by <%= @best_answer.user.name %></span>
+</div>
+<hr>
+
 <div id="answers">
   <% @question.answers.each do |answer| %>
+  <% unless answer.id == @question.best_answer_id %>
     <div class="q-answer">
+      <% if @question.user_id = current_user.id %>
+      <%= form_for [current_user, @question], :role => 'form', :remote => true do |f| %>
+      <%= f.hidden_field :best_answer_id, value: answer.id %>
+      <span class='glyphicon glyphicon-heart'></span>
+    <% end %>
+    <% end %>
       <%= answer.message %>
       <span class="a-author">Submitted by <%= answer.user.name %></span>
     </div>
+    <hr>
+    <% end %>
+
   <% end %>
 </div>
-<hr>
 <%= form_for [current_user, @question, @answer], :role => 'form', :remote => true do |f| %>
   <div class="form-group">
     <%= f.text_area :message, id: 'answer-ta', class: 'form-control', placeholder: 'Add Answer' %>

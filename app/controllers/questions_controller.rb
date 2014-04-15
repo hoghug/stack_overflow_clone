@@ -19,11 +19,21 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answer = Answer.new
     @vote = Vote.new
+    @best_answer = Answer.find(@question.best_answer_id)
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+      redirect_to :back
+    else
+      redirect_to :back
+    end
   end
 
   private
     def question_params
-      params.require(:question).permit(:title, :message)
+      params.require(:question).permit(:title, :message, :best_answer_id)
     end
 
 end
